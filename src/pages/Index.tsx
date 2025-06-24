@@ -178,19 +178,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Feature Grid */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.h2
-            className="text-4xl lg:text-5xl font-bold font-space-grotesk mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="text-white">Complete Trading </span>
-            <span className="text-gradient-ai">Ecosystem</span>
-          </motion.h2>
-          <FeatureGrid />
         </div>
       </section>
 
