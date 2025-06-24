@@ -37,7 +37,7 @@ const fetchBtcData = async () => {
       };
     }
   } catch (error) {
-    console.warn("Bitcoin API failed, using fallback data:", error);
+    
   }
 
   return fallbackData;
@@ -80,7 +80,7 @@ const fetchGoldData = async () => {
       };
     }
   } catch (error) {
-    console.warn("Gold API failed, using fallback data:", error);
+    
   }
 
   return fallbackData;
@@ -114,8 +114,8 @@ export const useMarketData = () => {
   });
 
   // Don't log errors since we handle them gracefully with fallback data
-  // if (btcError) console.error("Error fetching BTC data:", btcError);
-  // if (goldError) console.error("Error fetching Gold data:", goldError);
+  // if (btcError) 
+  // if (goldError) 
 
   return {
     btc: {
