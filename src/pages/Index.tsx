@@ -4,7 +4,6 @@ import { ArrowRight, Brain, Zap, Shield, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FeatureGrid from "@/components/FeatureGrid";
 import AIGrid from "@/components/AIGrid";
 import CryptoArbitrageSection from "@/components/CryptoArbitrageSection";
 import HeroDashboard from "@/components/HeroDashboard";
