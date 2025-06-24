@@ -46,8 +46,8 @@ const LiveMarketTicker: React.FC = () => {
       const cryptoIds = cryptoSymbols.map((s) => s.id).join(",");
       // API disabled - static data used
         // const res = await fetch(
-        `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoIds}&vs_currencies=usd`,
-      );
+//         `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoIds}&vs_currencies=usd`,
+//       );
       const json = await res.json();
       const cryptoData = cryptoSymbols.map((s) => {
         const currentPrice = json[s.id]?.usd ?? fallbackPrices[s.id];
