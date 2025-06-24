@@ -72,7 +72,7 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Brain className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />
+              <Brain className="w-6 h-6 text-gold group-hover:text-white transition-all duration-300 drop-shadow-lg" />
               <span className="text-lg font-medium text-white/90 group-hover:text-white transition-colors">
                 AI-POWERED TRADING PLATFORM
               </span>
