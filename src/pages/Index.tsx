@@ -64,7 +64,7 @@ const Index = () => {
           <Navbar />
 
           {/* Hero Section with proper spacing */}
-          <div className="max-w-7xl mx-auto px-6 text-center pt-32 pb-20">
+          <div className="max-w-7xl mx-auto px-6 text-center pt-40 pb-24">
             {/* AI Badge */}
             <motion.div
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full mb-8 group"
