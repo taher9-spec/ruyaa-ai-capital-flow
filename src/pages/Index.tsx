@@ -176,10 +176,7 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-        </div>
-      </section>
-
+      {/* AI Grid */}
       {/* AI Grid */}
       <AIGrid startAnimation={startAnimation} />
 
