@@ -8,7 +8,7 @@ import * as THREE from 'three';
 // 3D Brain Icon Component
 const Brain3D: React.FC<{ isHovered: boolean }> = ({ isHovered }) => {
   const meshRef = useRef<THREE.Mesh>(null);
-  const materialRef = useRef<any>(null);
+  const materialRef = useRef<THREE.MeshStandardMaterial | null>(null);
   
   useFrame((state) => {
     if (meshRef.current) {
@@ -38,16 +38,19 @@ const Brain3D: React.FC<{ isHovered: boolean }> = ({ isHovered }) => {
       {/* Neural network connections */}
       <group>
         {Array.from({ length: 8 }, (_, i) => (
-          <mesh key={i} position={[
-            -1.2 + Math.sin(i * 0.785) * 0.4,
-            Math.cos(i * 0.785) * 0.4,
-            Math.sin(i * 0.392) * 0.2
-          ]}>
+          <mesh
+            key={i}
+            position={[
+              -1.2 + Math.sin(i * 0.785) * 0.4,
+              Math.cos(i * 0.785) * 0.4,
+              Math.sin(i * 0.392) * 0.2,
+            ]}
+          >
             <sphereGeometry args={[0.02, 8, 8]} />
             <meshBasicMaterial color="#ffffff" opacity={0.6} transparent />
           </mesh>
         ))}
-      </div>
+      </group>
     </Float>
   );
 };
@@ -80,7 +83,7 @@ const BackgroundSphere: React.FC = () => {
 
 // 3D Text Component
 const Text3D: React.FC<{ isHovered: boolean }> = ({ isHovered }) => {
-  const textRef = useRef<any>(null);
+  const textRef = useRef<THREE.Mesh | null>(null);
   
   useFrame((state) => {
     if (textRef.current) {
