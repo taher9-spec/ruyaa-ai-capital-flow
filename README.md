@@ -22,6 +22,14 @@ Ruyaa-AI is an AI-powered trading and assistant engine built with Vite, React an
 ## Deployment
 This project is ready for deployment on [Vercel](https://vercel.com/). Configure the included `vercel.json` and set your environment variables in the Vercel dashboard. Point the domain **ruyaacapital.com** to your Vercel project for production.
 
+### Build Optimization
+The project is configured to optimize Vercel builds by limiting deployments to only two environments:
+
+1. **Production builds** - Only triggered for the main branch
+2. **Preview builds** - Only triggered for preview deployments of the main branch
+
+This optimization is implemented using Vercel's `ignoreCommand` feature in `vercel.json`, which runs a script to determine whether a build should proceed based on the deployment environment. This prevents unnecessary builds and reduces deployment time and resources.
+
 ## Environment Variables
 See `.env.example` for the full list of configuration options.
 

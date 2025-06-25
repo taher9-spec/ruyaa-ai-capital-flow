@@ -3,6 +3,7 @@
     "bradlc.vscode-tailwindcss",
     "esbenp.prettier-vscode",
     "saoudrizwan.claude-dev",
-    "googlecloudtools.cloudcode"
+    "googlecloudtools.cloudcode",
+    "github.copilot"
   ]
 }
