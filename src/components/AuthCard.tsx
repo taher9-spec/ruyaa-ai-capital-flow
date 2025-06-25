@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import EmailAuthForm from "./auth/EmailAuthForm";
 import WalletConnectButton from "./auth/WalletConnectButton";
+import RuyaaCharacterCard from "./RuyaaCharacterCard";
 
 type AuthType = "signIn" | "signUp";
 
@@ -22,6 +23,10 @@ const AuthCard: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-full bg-gray-950 font-spacegrotesk">
       <div className="w-full max-w-md mx-auto bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-xl p-8 relative z-10 animate-fade-in">
+        <RuyaaCharacterCard
+          onClick={() => setActiveTab('signUp')}
+          className="mb-6"
+        />
         {/* Tabs */}
         <div className="flex justify-center mb-8">
           <button

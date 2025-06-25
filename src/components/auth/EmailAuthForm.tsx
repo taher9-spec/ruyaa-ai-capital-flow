@@ -29,6 +29,8 @@ const EmailAuthForm: React.FC<EmailAuthFormProps> = ({ activeTab, setActiveTab }
   const [err, setErr] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [info, setInfo] = useState("");
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -49,7 +51,14 @@ const EmailAuthForm: React.FC<EmailAuthFormProps> = ({ activeTab, setActiveTab }
         const { error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: redirectTo }
+          options: {
+            emailRedirectTo: redirectTo,
+            data: {
+              full_name: fullName,
+              info,
+              avatar_url: "/Ruyaa-Agent.png"
+            }
+          }
         });
         if (error) setErr(error.message);
       }
@@ -91,6 +100,17 @@ const EmailAuthForm: React.FC<EmailAuthFormProps> = ({ activeTab, setActiveTab }
         <span className="mx-2 text-xs text-neutral-500">or</span>
         <div className="flex-grow border-t border-neutral-700" />
       </div>
+      {activeTab === "signUp" && (
+        <Input
+          className="bg-[#111111] border border-neutral-700 rounded-lg px-4 py-3 text-white placeholder:text-neutral-500 text-base"
+          placeholder="Full Name"
+          type="text"
+          required
+          value={fullName}
+          onChange={e => setFullName(e.target.value)}
+          disabled={loading}
+        />
+      )}
       <Input
         className="bg-[#111111] border border-neutral-700 rounded-lg px-4 py-3 text-white placeholder:text-neutral-500 text-base"
         placeholder="Email"
@@ -101,6 +121,16 @@ const EmailAuthForm: React.FC<EmailAuthFormProps> = ({ activeTab, setActiveTab }
         onChange={e => setEmail(e.target.value)}
         disabled={loading}
       />
+      {activeTab === "signUp" && (
+        <Input
+          className="bg-[#111111] border border-neutral-700 rounded-lg px-4 py-3 text-white placeholder:text-neutral-500 text-base"
+          placeholder="Info"
+          type="text"
+          value={info}
+          onChange={e => setInfo(e.target.value)}
+          disabled={loading}
+        />
+      )}
       <Input
         className="bg-[#111111] border border-neutral-700 rounded-lg px-4 py-3 text-white placeholder:text-neutral-500 text-base"
         placeholder="Password"
