@@ -3,7 +3,7 @@ import logo from "../../ruyaa agents/ruyaaaaaaaaaaaaaalogo.png";
 
 const WhoWeArePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#121212] via-[#0e0e0e] to-black text-white flex flex-col items-center px-6 pt-48 pb-12">
+    <div className="min-h-screen bg-gradient-to-b from-[#0d0d0d] via-[#0a0a0a] to-black text-white flex flex-col items-center px-6 pt-40 pb-12">
       <img src={logo} alt="Ruyaa Capital Logo" className="w-48 h-auto mb-8" />
       <div className="w-full max-w-5xl space-y-12">
         <section className="text-lg md:text-xl leading-relaxed text-right" dir="rtl">
