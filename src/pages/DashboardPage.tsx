@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
-import Navbar from "@/components/Navbar";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import FuturisticBackground from "@/components/FuturisticBackground";
 import ParticleBackground from "@/components/ParticleBackground";
@@ -102,10 +101,9 @@ const DashboardPage = () => {
   const featuresActive = dashboardData?.features && dashboardData.features.length > 0;
 
   return (
-    <div className="relative min-h-screen bg-[#0D0D0D] font-spacegrotesk overflow-hidden">
+    <div className="relative min-h-screen font-spacegrotesk overflow-hidden">
       <FuturisticBackground />
       <ParticleBackground />
-      <Navbar />
       <DashboardLayout>
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full z-10"

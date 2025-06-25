@@ -2,17 +2,41 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Brain, Zap, Shield, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AIGrid from "@/components/AIGrid";
 import CryptoArbitrageSection from "@/components/CryptoArbitrageSection";
 import HeroDashboard from "@/components/HeroDashboard";
 import LogoCloud from "@/components/LogoCloud";
 import PathModal from "@/components/PathModal";
-import BackgroundCanvas from "@/components/BackgroundCanvas";
+import FuturisticBackground from "@/components/FuturisticBackground";
+import ParticleBackground from "@/components/ParticleBackground";
 import { useChatContext } from "@/context/ChatContext";
 import { useTranslation } from "react-i18next";
+// Remove direct import of image, use public path for Vite
+// import heroAiChart from "../../public/assets/hero_ai_chart2.png";
+import signalImg from "../../ruyaa agents/signal.png";
 
+/**
+ * The main landing page component for the AI-powered trading platform.
+ *
+ * Renders the hero section, feature highlights, AI grid animation, real-time dashboard,
+ * crypto arbitrage section, and footer. Handles language direction (LTR/RTL) and
+ * provides animated transitions for key UI elements.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered landing page.
+ *
+ * @remarks
+ * - Uses Framer Motion for animations.
+ * - Integrates with translation and chat context providers.
+ * - Displays a modal for path selection.
+ * - Features are dynamically rendered from a configuration array.
+ *
+ * @example
+ * ```tsx
+ * <Index />
+ * ```
+ */
 const Index = () => {
   const [showPathModal, setShowPathModal] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
@@ -53,15 +77,14 @@ const Index = () => {
   ];
 
   return (
-    <div className="relative min-h-screen bg-black">
-      <BackgroundCanvas />
+    <div className="relative min-h-screen">
+      <FuturisticBackground />
+      <ParticleBackground />
       <div
         className="relative z-10 min-h-screen bg-black text-gray-100"
         dir={isArabic ? "rtl" : "ltr"}
       >
         <div className="relative">
-          <Navbar />
-
           {/* Hero Section with proper spacing */}
           <div className="max-w-7xl mx-auto px-6 text-center pt-40 pb-24">
             {/* AI Badge */}
@@ -146,10 +169,25 @@ const Index = () => {
               <span className="text-white">Powered by </span>
               <span className="text-gold">Advanced AI</span>
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-gray-300">
-              Our cutting-edge artificial intelligence analyzes markets,
-              executes trades, and manages risk with superhuman precision.
-            </p>
+            {/* Removed the old description and image, kept the card */}
+            <div className="flex justify-center">
+              <div
+                className="relative rounded-3xl p-1 overflow-hidden shadow-2xl"
+                style={{ perspective: "800px", background: "#bfa100" }} // darker gold
+              >
+                {/* Animated half-light border effect */}
+                <span className="absolute inset-0 z-10 pointer-events-none">
+                  <span className="animate-half-light block w-full h-full border-4 border-yellow-400 border-t-transparent border-b-transparent rounded-3xl" style={{ boxShadow: "0 0 32px 4px #bfa100" }}></span>
+                </span>
+                <div
+                  className="bg-black rounded-3xl p-6 relative z-20 flex flex-col items-center justify-center"
+                  style={{ boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)" }}
+                >
+                  {/* Image removed as requested */}
+                  {/* Signal text removed as requested */}
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -163,13 +201,29 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="relative z-10">
-                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-white/5 transition-transform duration-300 group-hover:scale-110">
-                    <feature.icon className="h-8 w-8 text-white" />
-                  </div>
+                  {/* Custom image for AI-Powered Analysis */}
+                  {feature.title === "AI-Powered Analysis" ? (
+                    <div className="w-full mb-6" style={{ height: "160px", minHeight: '120px', maxHeight: '200px' }}>
+                      <img
+                        src={"/assets/hero_ai_chart2.png"}
+                        alt="AI Chart"
+                        className="object-cover w-full h-full block rounded-2xl"
+                        style={{ display: "block" }}
+                        draggable="false"
+                      />
+                    </div>
+                  ) : (
+                    <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-white/5 transition-transform duration-300 group-hover:scale-110">
+                      <feature.icon className="h-8 w-8 text-white" />
+                    </div>
+                  )}
                   <h3 className="mb-4 text-xl font-bold text-white">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-300">{feature.description}</p>
+                  {/* Hide description for AI-Powered Analysis */}
+                  {feature.title !== "AI-Powered Analysis" && (
+                    <p className="text-gray-300">{feature.description}</p>
+                  )}
                 </div>
               </motion.div>
             ))}

@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '@/components/Navbar';
 import AgentSelectionCard from '@/components/AgentSelectionCard';
 import ParticleBackground from '@/components/ParticleBackground';
 import FuturisticBackground from '@/components/FuturisticBackground';
@@ -38,7 +37,6 @@ const AgentsPage: React.FC = () => {
     <div className="relative min-h-screen">
       <FuturisticBackground />
       <ParticleBackground />
-      <Navbar />
       <main className="pt-32 pb-20 w-full">
         <section className="w-full max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">

@@ -1,8 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import ParticleBackground from "@/components/ParticleBackground";
 import FuturisticBackground from "@/components/FuturisticBackground";
+import ParticleBackground from "@/components/ParticleBackground";
 import {
   Wallet,
   Banknote,
@@ -55,10 +54,9 @@ const WithdrawPage: React.FC = () => {
   ];
 
   return (
-    <div className="relative min-h-screen bg-[#0D0D0D]">
+    <div className="relative min-h-screen">
       <FuturisticBackground />
       <ParticleBackground />
-      <Navbar />
       <main className="pt-32 pb-20 w-full max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "@/components/Navbar";
 import ParticleBackground from "@/components/ParticleBackground";
 import AIMarketTable from "@/components/AIMarketTable";
 import ArbitrageTicker from "@/components/ArbitrageTicker";
@@ -9,7 +8,6 @@ const MarketPage: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-[#0D0D0D]">
       <ParticleBackground />
-      <Navbar />
       <main className="pt-32 pb-20 w-full max-w-5xl mx-auto px-6 space-y-12">
         <ArbitrageTicker />
         <motion.div

@@ -1,6 +1,4 @@
-
 import React from 'react';
-import Navbar from '@/components/Navbar';
 import AgentChat from '@/components/AgentChat';
 import ParticleBackground from '@/components/ParticleBackground';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +8,6 @@ const ArbitragePage: React.FC = () => {
   return (
     <div className="relative min-h-screen">
       <ParticleBackground />
-      <Navbar />
       <main className="pt-32 pb-20 w-full">
         <section className="w-full max-w-2xl mx-auto px-6">
           <div className="text-start mb-8">

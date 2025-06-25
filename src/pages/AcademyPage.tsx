@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import type { Lesson } from "@/components/academy/InteractiveLessonCard";
-import Navbar from "@/components/Navbar";
+import Lesson from "@/components/academy/InteractiveLessonCard";
 import Footer from "@/components/Footer";
 import AcademyHero from "@/components/academy/AcademyHero";
 import VideoPlayerSection from "@/components/academy/VideoPlayerSection";
@@ -18,6 +17,11 @@ import {
 import { useAuthState } from "@/hooks/chat/useAuthState";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
+import FuturisticBackground from "@/components/FuturisticBackground";
+import ParticleBackground from "@/components/ParticleBackground";
+import type { Tables } from "@/integrations/supabase/types";
+
+type Lesson = Tables<"video_lessons">;
 
 const AcademyPage = () => {
   const { i18n } = useTranslation();
@@ -137,7 +141,6 @@ const AcademyPage = () => {
   if (coursesLoading || lessonsLoading) {
     return (
       <div className="min-h-screen bg-[#0D0D0D]" dir={isArabic ? "rtl" : "ltr"}>
-        <Navbar />
         <div className="pt-32 flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="relative mb-6">
@@ -157,71 +160,74 @@ const AcademyPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D]" dir={isArabic ? "rtl" : "ltr"}>
-      <Navbar />
+    <div className="relative min-h-screen">
+      <FuturisticBackground />
+      <ParticleBackground />
 
-      <main className="pt-32 pb-20">
-        {/* Hero Section */}
-        <AcademyHero currentCourse={currentCourse} lessons={lessons} />
+      <div className="min-h-screen bg-[#0D0D0D]" dir={isArabic ? "rtl" : "ltr"}>
+        <main className="pt-32 pb-20">
+          {/* Hero Section */}
+          <AcademyHero currentCourse={currentCourse} lessons={lessons} />
 
-        {/* Course Progress */}
-        <section className="max-w-7xl mx-auto px-6 mb-12">
-          <CourseProgress
-            completedLessons={completedLessons.length}
-            totalLessons={lessons?.length || 0}
-            progressPercentage={progressPercentage}
-          />
-        </section>
+          {/* Course Progress */}
+          <section className="max-w-7xl mx-auto px-6 mb-12">
+            <CourseProgress
+              completedLessons={completedLessons.length}
+              totalLessons={lessons?.length || 0}
+              progressPercentage={progressPercentage}
+            />
+          </section>
 
-        {/* Main Course Content */}
-        <section className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Video/Interactive Player */}
-            <div className="lg:col-span-2">
-              <VideoPlayerSection
-                selectedLesson={selectedLesson}
-                completedLessons={completedLessons}
-                videoKey={videoKey}
-                onVideoEnd={handleVideoEnd}
-                onManualComplete={handleManualComplete}
-              />
-
-              {/* Course Completion CTA */}
-              <CourseCompletionCard progressPercentage={progressPercentage} />
-            </div>
-
-            {/* Sidebar */}
-            <div className="lg:col-span-1 space-y-6">
-              {/* AI Stats Card */}
-              <AIStatsCard />
-
-              {/* Course Playlist */}
-              {lessons && (
-                <CourseCurriculum
-                  lessons={lessons}
+          {/* Main Course Content */}
+          <section className="max-w-7xl mx-auto px-6">
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Video/Interactive Player */}
+              <div className="lg:col-span-2">
+                <VideoPlayerSection
                   selectedLesson={selectedLesson}
                   completedLessons={completedLessons}
-                  onLessonSelect={handleLessonSelect}
-                  isLoading={lessonsLoading}
+                  videoKey={videoKey}
+                  onVideoEnd={handleVideoEnd}
+                  onManualComplete={handleManualComplete}
                 />
-              )}
 
-              {/* Start Trading CTA */}
-              <TradingCTA />
+                {/* Course Completion CTA */}
+                <CourseCompletionCard progressPercentage={progressPercentage} />
+              </div>
+
+              {/* Sidebar */}
+              <div className="lg:col-span-1 space-y-6">
+                {/* AI Stats Card */}
+                <AIStatsCard />
+
+                {/* Course Playlist */}
+                {lessons && (
+                  <CourseCurriculum
+                    lessons={lessons}
+                    selectedLesson={selectedLesson}
+                    completedLessons={completedLessons}
+                    onLessonSelect={handleLessonSelect}
+                    isLoading={lessonsLoading}
+                  />
+                )}
+
+                {/* Start Trading CTA */}
+                <TradingCTA />
+              </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
+        </main>
 
-      {/* Quiz Modal */}
-      <QuizModal
-        isOpen={showQuiz}
-        onClose={() => setShowQuiz(false)}
-        onComplete={handleQuizComplete}
-        quizNumber={currentQuizNumber}
-      />
+        {/* Quiz Modal */}
+        <QuizModal
+          isOpen={showQuiz}
+          onClose={() => setShowQuiz(false)}
+          onComplete={handleQuizComplete}
+          quizNumber={currentQuizNumber}
+        />
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 };
