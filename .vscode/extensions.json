@@ -1,6 +1,8 @@
 {
   "recommendations": [
     "bradlc.vscode-tailwindcss",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "saoudrizwan.claude-dev",
+    "googlecloudtools.cloudcode"
   ]
 }

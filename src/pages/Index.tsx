@@ -12,9 +12,7 @@ import FuturisticBackground from "@/components/FuturisticBackground";
 import ParticleBackground from "@/components/ParticleBackground";
 import { useChatContext } from "@/context/ChatContext";
 import { useTranslation } from "react-i18next";
-// Remove direct import of image, use public path for Vite
-// import heroAiChart from "../../public/assets/hero_ai_chart2.png";
-import signalImg from "../../ruyaa agents/signal.png";
+import CustomAICard from "@/components/CustomAICard";
 
 /**
  * The main landing page component for the AI-powered trading platform.
@@ -166,71 +164,37 @@ const Index = () => {
             viewport={{ once: true }}
           >
             <h2 className="mb-6 text-4xl font-bold lg:text-5xl font-space-grotesk">
-              <span className="text-white">Powered by </span>
-              <span className="text-gold">Advanced AI</span>
+              <span className="text-white">Powered by Advanced AI</span>
+              <span className="ml-2 px-3 py-1 rounded-full bg-black text-white text-lg font-bold shadow-lg align-middle tracking-wide border border-white/10 animate-none">
+                Agent
+              </span>
             </h2>
-            {/* Removed the old description and image, kept the card */}
-            <div className="flex justify-center">
-              <div
-                className="relative rounded-3xl p-1 overflow-hidden shadow-2xl"
-                style={{ perspective: "800px", background: "#bfa100" }} // darker gold
-              >
-                {/* Animated half-light border effect */}
-                <span className="absolute inset-0 z-10 pointer-events-none">
-                  <span className="animate-half-light block w-full h-full border-4 border-yellow-400 border-t-transparent border-b-transparent rounded-3xl" style={{ boxShadow: "0 0 32px 4px #bfa100" }}></span>
-                </span>
-                <div
-                  className="bg-black rounded-3xl p-6 relative z-20 flex flex-col items-center justify-center"
-                  style={{ boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)" }}
-                >
-                  {/* Image removed as requested */}
-                  {/* Signal text removed as requested */}
-                </div>
-              </div>
+            {/* Custom AI Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 justify-center items-stretch">
+              {[
+                {
+                  imageSrc: "/assets/50ee018b-7a53-4e1e-a776-aed7f7c0ca0b.png", // Market Sniper Set (reference image)
+                  buttonText: "Signal Engine"
+                },
+                {
+                  imageSrc: "/uploads/1344e471-1643-4f75-ae5c-9b0e36b02a0d.png", // Greenish Arbitrage Engine (reference image)
+                  buttonText: "Market Sniper Set"
+                },
+                {
+                  imageSrc: "/uploads/RuyaaCapital-AI-xau.png", // AI XAU
+                  buttonText: "Risk Master"
+                },
+              ].map((card, idx) => (
+                <CustomAICard
+                  key={card.imageSrc}
+                  imageSrc={card.imageSrc}
+                  buttonText={card.buttonText}
+                />
+              ))}
             </div>
           </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="group relative overflow-hidden rounded-2xl bg-white/5 p-8 text-center backdrop-blur-sm transition-all hover:bg-white/10 hover:shadow-xl hover:shadow-white/5"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <div className="relative z-10">
-                  {/* Custom image for AI-Powered Analysis */}
-                  {feature.title === "AI-Powered Analysis" ? (
-                    <div className="w-full mb-6" style={{ height: "160px", minHeight: '120px', maxHeight: '200px' }}>
-                      <img
-                        src={"/assets/hero_ai_chart2.png"}
-                        alt="AI Chart"
-                        className="object-cover w-full h-full block rounded-2xl"
-                        style={{ display: "block" }}
-                        draggable="false"
-                      />
-                    </div>
-                  ) : (
-                    <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-white/5 transition-transform duration-300 group-hover:scale-110">
-                      <feature.icon className="h-8 w-8 text-white" />
-                    </div>
-                  )}
-                  <h3 className="mb-4 text-xl font-bold text-white">
-                    {feature.title}
-                  </h3>
-                  {/* Hide description for AI-Powered Analysis */}
-                  {feature.title !== "AI-Powered Analysis" && (
-                    <p className="text-gray-300">{feature.description}</p>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
-      {/* AI Grid */}
       {/* AI Grid */}
       <AIGrid startAnimation={startAnimation} />
 
