@@ -577,6 +577,7 @@ const AIChat: React.FC<AIChatProps> = ({ className }) => {
 
       {/* Input Area */}
       <div className="relative z-10 p-4 border-t border-border/50 backdrop-blur-sm bg-background/80">
+        {/* Removed animated border flash */}
         <form
           onSubmit={handleSubmit}
           className="relative rounded-2xl border border-border bg-background/50 backdrop-blur-sm focus-within:ring-1 focus-within:ring-ring p-1"

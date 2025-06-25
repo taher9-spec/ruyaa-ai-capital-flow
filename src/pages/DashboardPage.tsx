@@ -9,7 +9,6 @@ import ProfileCard from "@/components/dashboard/ProfileCard";
 import FeatureCTA from "@/components/dashboard/FeatureCTA";
 import SessionsCard from "@/components/dashboard/SessionsCard";
 import WalletsCard from "@/components/dashboard/WalletsCard";
-import CustomAICard from "@/components/CustomAICard";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
@@ -61,11 +60,11 @@ const DashboardPage = () => {
   const { data: dashboardData, isLoading: isLoadingData } = useDashboardData(session);
 
   // --- CTA Actions ---
-  const handleActivate = () => {
-    // Scroll to agent flows or show modal (demo)
+  const handleNameAgent = (name: string) => {
+    // TODO: Save agent name to Supabase
     toast({
-      title: "Activate Features",
-      description: "Feature activation flow coming soon (connect with agent)."
+      title: "Agent Named!",
+      description: `Your agent is now named "${name}".`
     });
   };
 
@@ -91,7 +90,6 @@ const DashboardPage = () => {
     }
   };
 
-
   if (loadingSession || isLoadingData || !session) {
     return (
       <div className="min-h-screen bg-[#0D0D0D] flex items-center justify-center">
@@ -113,21 +111,15 @@ const DashboardPage = () => {
           initial="initial"
           animate="animate"
         >
-          <motion.div variants={{ animate: { opacity: 1, y: 0, transition: { delay: 0.05 } }, initial: { opacity: 0, y: 20 } }}>
-            <CustomAICard
-              imageSrc="/uploads/1344e471-1643-4f75-ae5c-9b0e36b02a0d.png"
-              buttonText="Market Sniper Set"
-            />
-          </motion.div>
           <motion.div variants={{ animate: { opacity: 1, y: 0, transition: { delay: 0.07 } }, initial: { opacity: 0, y: 20 } }}>
             <ProfileCard profile={dashboardData?.profile} email={session.user.email} onEdit={() => toast({ title: "Edit Profile", description: "Coming soon!" })} />
           </motion.div>
           <motion.div variants={{ animate: { opacity: 1, y: 0, transition: { delay: 0.15 } }, initial: { opacity: 0, y: 20 } }}>
             {!featuresActive ? (
-              <FeatureCTA onActivate={handleActivate} />
+              <FeatureCTA onNameAgent={handleNameAgent} />
             ) : (
               // Show badges/feature list if you wish instead of CTA
-              <FeatureCTA onActivate={handleActivate} />
+              <FeatureCTA onNameAgent={handleNameAgent} />
             )}
           </motion.div>
           <motion.div variants={{ animate: { opacity: 1, y: 0, transition: { delay: 0.2 } }, initial: { opacity: 0, y: 20 } }}>
@@ -144,3 +136,8 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
+
+type FeatureCTAProps = {
+  // existing props
+  onNameAgent: (name: string) => void;
+};

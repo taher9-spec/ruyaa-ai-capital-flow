@@ -1,35 +1,35 @@
 import React from 'react';
-import AgentSelectionCard from '@/components/AgentSelectionCard';
+import CustomAICard from '@/components/CustomAICard';
+import AIChatDemo from '@/components/CustomAgentChat';
 import ParticleBackground from '@/components/ParticleBackground';
 import FuturisticBackground from '@/components/FuturisticBackground';
-import { useChatContext, AgentId } from '@/context/ChatContext';
+import { useChatContext } from '@/context/ChatContext';
 import { useTranslation } from 'react-i18next';
 
 const AgentsPage: React.FC = () => {
   const { openChat } = useChatContext();
   const { t } = useTranslation();
 
-  const agents: {id: AgentId, title: string, description: string, logoSrc: string, href?: string}[] = [
+  const [activeAgentId, setActiveAgentId] = React.useState('mt4mt5');
+
+  const agents = [
     {
       id: 'mt4mt5',
       title: t('agent_mt4_title'),
       description: t('agent_mt4_desc'),
-      logoSrc: '/icons/gold-bars.svg',
-      href: '/agents/mt4mt5',
+      imageSrc: '/uploads/Agent-forex.png',
     },
     {
       id: 'crypto',
       title: t('agent_crypto_title'),
       description: t('agent_crypto_desc'),
-      logoSrc: '/icons/crypto-coins.svg',
-      href: '/agents/crypto',
+      imageSrc: '/uploads/RUYACRYPTOAGENT.png',
     },
     {
       id: 'arbitrage',
       title: t('agent_arbitrage_title'),
       description: t('agent_arbitrage_desc'),
-      logoSrc: '/icons/arb.svg',
-      href: '/agents/arbitrage',
+      imageSrc: '/uploads/ARBITRAGGGGGGG.png',
     },
   ];
 
@@ -49,16 +49,19 @@ const AgentsPage: React.FC = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {agents.map((agent) => (
-              <AgentSelectionCard
+              <CustomAICard
                 key={agent.id}
-                id={agent.id}
+                imageSrc={agent.imageSrc}
                 title={agent.title}
-                description={agent.description}
-                logoSrc={agent.logoSrc}
-                href={agent.href}
-                onClick={!agent.href ? () => openChat(agent.id) : undefined}
+                buttonText={agent.title}
+                isActive={activeAgentId === agent.id}
+                onClick={() => setActiveAgentId(agent.id)}
               />
             ))}
+          </div>
+          {/* Main Chat UI below cards */}
+          <div className="mt-16">
+            <AIChatDemo />
           </div>
         </section>
       </main>

@@ -1,3 +1,7 @@
+/* This file uses Tailwind CSS directives which are processed during build. 
+   The warnings about unknown at-rules (@tailwind, @apply) can be safely ignored 
+   as they are handled by PostCSS and Tailwind configuration. */
+
 /* Import Inter font first */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -16,11 +20,11 @@
     --border: 0 0% 88%;
     --input: 0 0% 88%;
     --ring: 0 0% 0%;
-    --primary: 48 96% 53%;
+    --primary: 0 0% 100%; /* Changed from yellow to white */
     --primary-foreground: 0 0% 10%;
     --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 10%;
-    --accent: 48 96% 53%;
+    --accent: 0 0% 100%; /* Changed from yellow to white */
     --accent-foreground: 0 0% 10%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -35,12 +39,12 @@
     --muted-foreground: 0 0% 70%;
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 48 96% 53%;
-    --primary: 48 96% 53%;
+    --ring: 0 0% 100%; /* White ring for focus, replaces yellow */
+    --primary: 0 0% 100%; /* Changed from yellow to white */
     --primary-foreground: 0 0% 0%;
     --secondary: 0 0% 10%;
     --secondary-foreground: 0 0% 100%;
-    --accent: 48 96% 53%;
+    --accent: 0 0% 100%; /* Changed from yellow to white */
     --accent-foreground: 0 0% 0%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;

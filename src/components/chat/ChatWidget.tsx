@@ -9,6 +9,15 @@ const ChatWidget = () => {
   const { isChatOpen, openChat, closeChat } = useChatContext();
   const location = useLocation();
 
+  // Hide widget on all /agents routes
+  if (
+    location.pathname === "/agents" ||
+    location.pathname === "/agents/" ||
+    location.pathname.startsWith("/agents/")
+  ) {
+    return null;
+  }
+
   const toggleChat = () => {
     if (isChatOpen) {
       closeChat();
@@ -17,23 +26,19 @@ const ChatWidget = () => {
     }
   };
 
-  if (location.pathname.startsWith("/agents/")) {
-    return null;
-  }
-
   return (
     <>
       <div className="fixed bottom-6 right-6 z-[100]">
         <motion.button
           onClick={toggleChat}
-          className="relative bg-black/90 border border-gray-700 text-white p-4 rounded-2xl shadow-[0_0_10px_rgba(255,255,255,0.2)] hover:shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
-          whileHover={{ scale: 1.05, borderColor: "rgba(0, 200, 150, 0.5)" }}
+          className="relative bg-black/90 border border-white text-white p-4 rounded-2xl shadow-[0_0_10px_rgba(255,255,255,0.2)] hover:shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
+          whileHover={{ scale: 1.05, borderColor: 'rgba(255,255,255,0.7)' }}
           whileTap={{ scale: 0.95 }}
           aria-label="Toggle AI Chat"
         >
-          {/* Subtle glow effect */}
+          {/* Subtle white glow effect */}
           <motion.div
-            className="absolute inset-0 bg-white/10 rounded-2xl blur-xl"
+            className="absolute inset-0 bg-white/20 rounded-2xl blur-xl"
             animate={{ opacity: [0.2, 0.6, 0.2], scale: [1, 1.05, 1] }}
             transition={{ duration: 3, repeat: Infinity }}
           />
@@ -51,7 +56,7 @@ const ChatWidget = () => {
                 <X className="w-6 h-6" />
               ) : (
                 <motion.span
-                  className="block font-black text-lg"
+                  className="block font-black text-lg text-white"
                   animate={{ rotate: [0, 360] }}
                   transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
                 >
@@ -89,17 +94,18 @@ const ChatWidget = () => {
           >
             <div className="relative h-full">
               {/* Modern dark themed container */}
-              <div className="h-full bg-black/90 border border-green/30 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
-                {/* Subtle animated border */}
+              <div className="h-full bg-black/90 border border-white/20 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
+                {/* Subtle animated white border line */}
                 <motion.div
-                  className="absolute inset-0 bg-green/10 rounded-2xl"
-                  animate={{ rotate: [0, 360] }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear",
+                  className="absolute inset-0 pointer-events-none"
+                  style={{ borderRadius: '1rem' }}
+                  animate={{
+                    background: [
+                      'conic-gradient(from 0deg, rgba(255,255,255,0.7) 0deg, transparent 90deg, transparent 360deg)',
+                      'conic-gradient(from 360deg, rgba(255,255,255,0.7) 0deg, transparent 90deg, transparent 360deg)'
+                    ]
                   }}
-                  style={{ padding: "1px" }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                 />
                 <div className="relative h-full bg-black/90 rounded-2xl">
                   <ChatPane />

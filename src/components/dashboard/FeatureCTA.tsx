@@ -1,13 +1,16 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Bolt } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface FeatureCTAProps {
-  onActivate: () => void;
+  onNameAgent: (name: string) => void;
 }
-const FeatureCTA: React.FC<FeatureCTAProps> = ({ onActivate }) => {
+const FeatureCTA: React.FC<FeatureCTAProps> = ({ onNameAgent }) => {
+  // For demo, use a hardcoded name. In real use, you might have an input.
+  const handleClick = () => {
+    onNameAgent("My Agent");
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -23,7 +26,7 @@ const FeatureCTA: React.FC<FeatureCTAProps> = ({ onActivate }) => {
       </span>
       <h3 className="text-xl font-bold text-white mb-3 tracking-tight">Unlock &amp; Start Profiting</h3>
       <Button
-        onClick={onActivate}
+        onClick={handleClick}
         className="px-8 py-3 rounded-full font-semibold text-base"
         tabIndex={0}
       >

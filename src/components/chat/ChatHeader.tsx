@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
@@ -19,7 +18,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
     <div className="p-4 border-b border-white/10 flex items-center gap-3 shrink-0">
       <div className="relative">
         <Avatar>
-          <AvatarFallback className="bg-gold text-dark-charcoal font-bold">
+          <AvatarFallback className="bg-white text-black font-bold">
             {avatar}
           </AvatarFallback>
         </Avatar>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Bot, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -12,7 +11,7 @@ const ChatMessage = ({ message }: { message: Message }) => {
         <div className={cn('flex items-start gap-3 animate-fade-in', isUser ? 'justify-end' : 'justify-start')}>
             {!isUser && (
                 <Avatar className="w-8 h-8">
-                    <AvatarFallback className="bg-gold text-dark-charcoal">
+                    <AvatarFallback className="bg-white text-black">
                         <Bot className="w-4 h-4" />
                     </AvatarFallback>
                 </Avatar>
@@ -21,7 +20,7 @@ const ChatMessage = ({ message }: { message: Message }) => {
                 className={cn(
                     'max-w-xs md:max-w-md p-3 rounded-xl shadow-md',
                     isUser
-                        ? 'bg-card text-gold border border-gold/40 rounded-br-none'
+                        ? 'bg-card text-white border border-white/10 rounded-br-none'
                         : 'bg-white/10 text-white rounded-bl-none'
                 )}
             >

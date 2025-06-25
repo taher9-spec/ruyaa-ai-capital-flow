@@ -215,9 +215,11 @@ interface CustomAICardProps {
   onTitleClick?: () => void;
   isLoggedIn?: boolean;
   hasTradingAccount?: boolean;
+  isActive?: boolean; // NEW: highlight active card
+  onClick?: () => void; // NEW: handle card click
 }
 
-const CustomAICard: React.FC<CustomAICardProps> = ({ imageSrc, title, buttonText = "Signal Engine", isLoggedIn = false, hasTradingAccount = false }) => {
+const CustomAICard: React.FC<CustomAICardProps> = ({ imageSrc, title, buttonText = "Signal Engine", isLoggedIn = false, hasTradingAccount = false, isActive = false, onClick }) => {
   const [showModal, setShowModal] = React.useState(false);
   const [shake, setShake] = React.useState(false);
 
@@ -233,11 +235,6 @@ const CustomAICard: React.FC<CustomAICardProps> = ({ imageSrc, title, buttonText
     setTimeout(() => setShake(false), 500);
   };
 
-  // Handle sign in button click
-  const handleSignIn = () => {
-    window.dispatchEvent(new CustomEvent('openUserProfilePanel'));
-  };
-
   return (
     <Tilt
       rotationFactor={8}
@@ -251,6 +248,7 @@ const CustomAICard: React.FC<CustomAICardProps> = ({ imageSrc, title, buttonText
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
+        onClick={onClick}
       >
         <div className="relative w-full h-full flex items-center justify-center cursor-pointer" onClick={handleImageClick} style={{padding:0}}>
           <img
@@ -259,31 +257,12 @@ const CustomAICard: React.FC<CustomAICardProps> = ({ imageSrc, title, buttonText
             className="object-fill w-full h-full rounded-2xl transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
             draggable="false"
           />
-          {/* Sign In button, inside image, top right, black bg */}
-          <button
-            className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black text-white text-xs font-semibold border border-white/20 hover:bg-black/80 transition-all duration-200"
-            style={{zIndex:2}}
-            onClick={e => { e.stopPropagation(); handleSignIn(); }}
-          >
-            {signInText}
-          </button>
         </div>
         {/* Subtle white glow on hover */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/10 to-white/10 blur-xl" />
         </div>
       </motion.div>
-      {/* Signal Engine button just under the card, black badge style */}
-      <div className="flex justify-center mt-2">
-        <button
-          className="px-4 py-1.5 rounded-full bg-black text-white text-sm font-semibold shadow border border-white/20 hover:bg-black/80 transition-all duration-200"
-          style={{ zIndex: 2 }}
-          onClick={() => setShake(true)}
-          onAnimationEnd={() => setShake(false)}
-        >
-          {buttonText}
-        </button>
-      </div>
     </Tilt>
   );
 };
