@@ -177,7 +177,7 @@ const Index = () => {
                   buttonText: "Signal Engine"
                 },
                 {
-                  imageSrc: "/Ruyaa-Agent.png",
+                  imageSrc: "/uploads/1344e471-1643-4f75-ae5c-9b0e36b02a0d.png", // Market Sniper Set image
                   buttonText: "Market Sniper Set"
                 },
                 {

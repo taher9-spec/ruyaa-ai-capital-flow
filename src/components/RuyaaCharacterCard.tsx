@@ -24,7 +24,7 @@ const RuyaaCharacterCard: React.FC<RuyaaCharacterCardProps> = ({ onClick, profil
       <img
         src="/Ruyaa-Agent.png"
         alt="Ruyaa Agent"
-        className="w-full h-52 object-contain transition-transform duration-300 group-hover:scale-105"
+        className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
       />
       <div className="flex-1 flex flex-col items-center justify-center px-4 pb-4 text-center">
         {profile ? (
