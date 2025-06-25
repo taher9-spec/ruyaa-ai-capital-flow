@@ -9,7 +9,7 @@ import ProfileCard from "@/components/dashboard/ProfileCard";
 import FeatureCTA from "@/components/dashboard/FeatureCTA";
 import SessionsCard from "@/components/dashboard/SessionsCard";
 import WalletsCard from "@/components/dashboard/WalletsCard";
-import RuyaaCharacterCard from "@/components/RuyaaCharacterCard";
+import CustomAICard from "@/components/CustomAICard";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
@@ -113,7 +113,10 @@ const DashboardPage = () => {
           animate="animate"
         >
           <motion.div variants={{ animate: { opacity: 1, y: 0, transition: { delay: 0.05 } }, initial: { opacity: 0, y: 20 } }}>
-            <RuyaaCharacterCard profile={dashboardData?.profile} />
+            <CustomAICard
+              imageSrc="/uploads/1344e471-1643-4f75-ae5c-9b0e36b02a0d.png"
+              buttonText="Market Sniper Set"
+            />
           </motion.div>
           <motion.div variants={{ animate: { opacity: 1, y: 0, transition: { delay: 0.07 } }, initial: { opacity: 0, y: 20 } }}>
             <ProfileCard profile={dashboardData?.profile} email={session.user.email} onEdit={() => toast({ title: "Edit Profile", description: "Coming soon!" })} />
