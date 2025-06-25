@@ -177,7 +177,7 @@ const Index = () => {
                   buttonText: "Signal Engine"
                 },
                 {
-                  imageSrc: "/uploads/1344e471-1643-4f75-ae5c-9b0e36b02a0d.png", // Greenish Arbitrage Engine (reference image)
+                  imageSrc: "/Ruyaa-Agent.png",
                   buttonText: "Market Sniper Set"
                 },
                 {
