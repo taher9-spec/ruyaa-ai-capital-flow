@@ -277,7 +277,7 @@ const CustomAICard: React.FC<CustomAICardProps> = ({ imageSrc, title, buttonText
       <div className="flex justify-center mt-2">
         <button
           className="px-4 py-1.5 rounded-full bg-black text-white text-sm font-semibold shadow border border-white/20 hover:bg-black/80 transition-all duration-200"
-          style={{zIndex:2}}
+          style={{ zIndex: 2 }}
           onClick={() => setShake(true)}
           onAnimationEnd={() => setShake(false)}
         >

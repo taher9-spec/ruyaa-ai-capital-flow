@@ -41,7 +41,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ profile, email }) => {
       <div className="flex items-center gap-5 mt-2 mb-6">
         <div className="flex-shrink-0">
           <Avatar className="h-16 w-16 ring-2 ring-green-400">
-            <AvatarImage src={profile?.avatar_url ?? undefined} alt={profile?.full_name ?? "User"} />
+            <AvatarImage src="/Ruyaa-Agent.png" alt="Ruyaa Agent" />
             <AvatarFallback className="bg-gray-800 text-white font-bold">{getInitials(profile?.full_name)}</AvatarFallback>
           </Avatar>
         </div>
