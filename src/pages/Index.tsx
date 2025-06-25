@@ -83,73 +83,84 @@ const Index = () => {
         dir={isArabic ? "rtl" : "ltr"}
       >
         <div className="relative">
-          {/* Hero Section with proper spacing */}
-          <div className="max-w-7xl mx-auto px-6 text-center pt-40 pb-24">
-            {/* AI Badge */}
-            <motion.div
-              className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full mb-8 group"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Brain className="w-6 h-6 text-gold group-hover:text-white transition-all duration-300 drop-shadow-lg" />
-              <span className="text-lg font-medium text-white/90 group-hover:text-white transition-colors">
-                AI-POWERED TRADING PLATFORM
-              </span>
-            </motion.div>
-
-            {/* Main Heading */}
-            <motion.h1
-              className="text-6xl lg:text-8xl font-bold font-space-grotesk leading-tight mb-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <span className="text-white">Let AI Trade For You</span>
-              <br />
-              <span className="text-gold">— From Beginner to Pro</span>
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p
-              className="text-2xl lg:text-3xl text-[#e6e6e6] mb-12 max-w-4xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Your personal AI scans markets, sends you signals, and builds
-              strategies on-demand. Just connect, and watch the agent work for
-              you.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <Link
-                to="/dashboard"
-                className="group relative overflow-hidden rounded-full bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-medium text-white transition-all hover:bg-white/20 hover:shadow-lg hover:shadow-white/5"
-              >
-                <span className="relative z-10 flex items-center">
-                  GET Started
-                  <ArrowRight className="ml-3 h-6 w-6 transition-transform group-hover:translate-x-1" />
-                </span>
-                <span className="absolute inset-0 -z-10 bg-white/15 opacity-0 transition-opacity group-hover:opacity-100" />
-              </Link>
-
-              <button
-                onClick={() => openChat("support")}
-                className="group relative overflow-hidden rounded-full border border-white/20 bg-transparent px-8 py-4 text-lg font-medium text-white transition-all hover:bg-white/5 hover:shadow-lg hover:shadow-white/5"
-              >
-                <span className="relative z-10 flex items-center">
-                  Talk to AI Assistant
-                  <Brain className="ml-3 h-6 w-6 transition-transform group-hover:scale-110" />
-                </span>
-              </button>
-            </motion.div>
+          {/* Hero Section with left/right layout */}
+          <div className="max-w-7xl mx-auto px-6 pt-40 pb-24">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+              {/* Left: Enhanced Text */}
+              <div className="flex-1 text-left lg:pr-12">
+                <motion.div
+                  className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full mb-8 group"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <Brain className="w-6 h-6 text-green-400 group-hover:text-white transition-all duration-300 drop-shadow-lg" />
+                  <span className="text-lg font-semibold text-white/90 group-hover:text-white transition-colors tracking-wide">
+                    AI-POWERED TRADING PLATFORM
+                  </span>
+                </motion.div>
+                <motion.h1
+                  className="text-5xl lg:text-7xl font-extrabold font-space-grotesk leading-tight mb-6 text-white drop-shadow-lg"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  Let <span className="text-gradient-ai">AI</span> Trade For You
+                  <br />
+                  <span className="text-gray-200 text-3xl font-medium">— From Beginner to Pro</span>
+                </motion.h1>
+                <motion.p
+                  className="text-xl lg:text-2xl text-gray-300 mb-10 max-w-2xl leading-relaxed font-light"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  Your personal AI scans markets, sends you signals, and builds strategies on-demand.<br />
+                  <span className="text-white font-semibold">Just connect, and watch the agent work for you.</span>
+                </motion.p>
+                <motion.div
+                  className="flex flex-col sm:flex-row gap-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  <Link
+                    to="/dashboard"
+                    className="group relative overflow-hidden rounded-full bg-green-500/90 px-8 py-4 text-lg font-semibold text-black shadow-lg hover:bg-green-400 transition-all"
+                  >
+                    <span className="relative z-10 flex items-center">
+                      GET Started
+                      <ArrowRight className="ml-3 h-6 w-6 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </Link>
+                  <button
+                    onClick={() => openChat("support")}
+                    className="group relative overflow-hidden rounded-full border border-green-400 bg-transparent px-8 py-4 text-lg font-semibold text-green-300 hover:bg-green-400/10 hover:text-white transition-all"
+                  >
+                    <span className="relative z-10 flex items-center">
+                      Talk to AI Assistant
+                      <Brain className="ml-3 h-6 w-6 transition-transform group-hover:scale-110" />
+                    </span>
+                  </button>
+                </motion.div>
+              </div>
+              {/* Right: LIVE MARKET Dashboard */}
+              <div className="flex-1 w-full max-w-xl">
+                <motion.div
+                  className="mb-4 flex items-center gap-3"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.3 }}
+                >
+                  <span className="px-4 py-2 rounded-full bg-gradient-to-r from-green-500/80 to-yellow-400/80 text-black font-bold text-lg shadow-md tracking-wide border border-white/10"
+                        style={{ color: '#1a1a1a', textShadow: '0 1px 8px #fff, 0 0px 2px #fff' }}>
+                    LIVE MARKET
+                  </span>
+                  <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse ml-2" />
+                </motion.div>
+                <HeroDashboard />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -185,11 +196,24 @@ const Index = () => {
                   buttonText: "Risk Master"
                 },
               ].map((card, idx) => (
-                <CustomAICard
-                  key={card.imageSrc}
-                  imageSrc={card.imageSrc}
-                  buttonText={card.buttonText}
-                />
+                <div key={card.imageSrc} className="flex flex-col items-center">
+                  <CustomAICard
+                    imageSrc={card.imageSrc}
+                    buttonText={card.buttonText}
+                  />
+                  <span
+                    className="-mt-3 px-3 py-1 rounded-b-xl bg-black/80 text-white text-xs font-semibold shadow-md border-t border-white/10 tracking-wide w-5/6 text-center"
+                    style={{
+                      borderTopLeftRadius: 0,
+                      borderTopRightRadius: 0,
+                      marginTop: '-0.75rem',
+                      position: 'relative',
+                      zIndex: 10,
+                    }}
+                  >
+                    {card.buttonText}
+                  </span>
+                </div>
               ))}
             </div>
           </motion.div>
@@ -198,30 +222,8 @@ const Index = () => {
       {/* AI Grid */}
       <AIGrid startAnimation={startAnimation} />
 
-      {/* Hero Dashboard */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl lg:text-5xl font-bold font-space-grotesk mb-6">
-              <span className="text-white">Real-Time </span>
-              <span className="text-gradient-ai">AI Dashboard</span>
-            </h2>
-            <p className="mx-auto max-w-3xl text-xl text-gray-300">
-              Monitor your AI-powered trading performance with live market data
-              and intelligent insights.
-            </p>
-          </motion.div>
-          <HeroDashboard />
-        </div>
-      </section>
-
       {/* Crypto Arbitrage Section */}
-      <section className="py-20">
+      <section className="py-20 mt-0">
         <CryptoArbitrageSection />
       </section>
 

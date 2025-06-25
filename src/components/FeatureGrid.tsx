@@ -38,13 +38,8 @@ const FeatureGrid: React.FC = () => {
         break;
       }
       case "Crypto Arbitrage System": {
-        // Scroll to arbitrage section
-        const arbitrageSection = document.querySelector(
-          '[class*="CryptoArbitrageSection"]',
-        );
-        if (arbitrageSection) {
-          arbitrageSection.scrollIntoView({ behavior: "smooth" });
-        }
+        // Route to agents page with arbitrage agent active
+        navigate("/agents?active=arbitrage");
         break;
       }
     }

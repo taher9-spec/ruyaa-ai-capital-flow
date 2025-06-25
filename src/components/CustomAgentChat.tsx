@@ -417,9 +417,15 @@ interface Message {
 // Main AI Chat Component
 interface AIChatProps {
   className?: string;
+  agent?: {
+    id: string;
+    title: string;
+    description: string;
+    imageSrc: string;
+  } | null;
 }
 
-const AIChat: React.FC<AIChatProps> = ({ className }) => {
+const AIChat: React.FC<AIChatProps> = ({ className, agent }) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -479,7 +485,7 @@ const AIChat: React.FC<AIChatProps> = ({ className }) => {
       {/* Header */}
       <div className="relative z-10 flex items-center justify-between p-6 border-b border-border/50 backdrop-blur-sm bg-background/80">
         <div className="flex items-center gap-3">
-                    <motion.div 
+          <motion.div 
             className="flex h-10 w-10 items-center justify-center rounded-full bg-primary"
             animate={{ 
               rotateY: [0, 5, -5, 0],
@@ -496,11 +502,15 @@ const AIChat: React.FC<AIChatProps> = ({ className }) => {
               transition: { duration: 0.3 }
             }}
           >
-            <Bot className="h-6 w-6 text-primary-foreground" />
+            {agent?.imageSrc ? (
+              <img src={agent.imageSrc} alt={agent.title} className="h-8 w-8 rounded-full object-cover" />
+            ) : (
+              <Bot className="h-6 w-6 text-primary-foreground" />
+            )}
           </motion.div>
           <div>
-            <h1 className="text-xl font-semibold">AI Assistant</h1>
-            <p className="text-sm text-muted-foreground">Always here to help</p>
+            <h1 className="text-xl font-semibold">{agent?.title || 'AI Assistant'}</h1>
+            <p className="text-sm text-muted-foreground">{agent?.description || 'Always here to help'}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -639,10 +649,10 @@ const AIChat: React.FC<AIChatProps> = ({ className }) => {
 };
 
 // Demo Component
-function AIChatDemo() {
+function AIChatDemo({ agent }: { agent?: { id: string; title: string; description: string; imageSrc: string } | null }) {
   return (
     <div className="h-screen w-full bg-background dark">
-      <AIChat />
+      <AIChat agent={agent} />
     </div>
   );
 }
