@@ -12,10 +12,19 @@ const getOpenrouter = () => {
     );
     return null;
   }
+
+  const referer =
+    import.meta.env.VITE_PUBLIC_URL ||
+    (typeof window !== "undefined" ? window.location.origin : "");
+
   return new OpenAI({
     apiKey,
     baseURL: "https://openrouter.ai/api/v1",
     dangerouslyAllowBrowser: true,
+    defaultHeaders: {
+      "HTTP-Referer": referer,
+      "X-Title": "Ruyaa AI",
+    },
   });
 };
 
