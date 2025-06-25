@@ -23,17 +23,9 @@ const AuthCard: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-full bg-gray-950 font-spacegrotesk">
       <div className="w-full max-w-md mx-auto bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-xl p-8 relative z-10 animate-fade-in">
- codex/link-image-to-user-signup
         <RuyaaCharacterCard
           onClick={() => setActiveTab('signUp')}
           className="mb-6"
-
-        <img
-          src="/Ruyaa-Agent.png"
-          alt="Ruyaa Agent"
-          className="w-24 h-24 mx-auto mb-4 rounded-full cursor-pointer"
-          onClick={() => setActiveTab('signUp')}
- main
         />
         {/* Tabs */}
         <div className="flex justify-center mb-8">
