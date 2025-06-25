@@ -25,6 +25,7 @@ import WithdrawPage from './pages/WithdrawPage';
 import HowItWorksPage from './pages/HowItWorksPage';
 import MarketPage from './pages/MarketPage';
 import BrokerRegistrationPage from './pages/BrokerRegistrationPage';
+import WhoWeArePage from './pages/WhoWeArePage';
 import AuthCard from './components/AuthCard';
 import NotFound from './pages/NotFound';
 
@@ -92,6 +93,7 @@ const App = () => {
                     <Route path="/deposit" element={<DepositPage />} />
                     <Route path="/withdraw" element={<WithdrawPage />} />
                     <Route path="/how-it-works" element={<HowItWorksPage />} />
+                    <Route path="/who-we-are" element={<WhoWeArePage />} />
                     <Route path="/market" element={<MarketPage />} />
                     <Route path="/register/broker" element={<BrokerRegistrationPage />} />
                     <Route path="/auth" element={<AuthCard />} />
