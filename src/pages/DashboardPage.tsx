@@ -114,7 +114,7 @@ const DashboardPage = () => {
         >
           <motion.div variants={{ animate: { opacity: 1, y: 0, transition: { delay: 0.05 } }, initial: { opacity: 0, y: 20 } }}>
             <CustomAICard
-              imageSrc="/uploads/1344e471-1643-4f75-ae5c-9b0e36b02a0d.png"
+              imageSrc="/Ruyaa-Agent.png"
               buttonText="Market Sniper Set"
             />
           </motion.div>
