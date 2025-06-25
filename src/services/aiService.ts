@@ -7,10 +7,8 @@ const getOpenrouter = () => {
   const apiKey =
     import.meta.env.VITE_OPENROUTER_API_KEY || import.meta.env.OPENROUTER_API_KEY;
   if (!apiKey) {
-    console.warn(
-      "OpenRouter API key not configured. Please define VITE_OPENROUTER_API_KEY in your environment for full AI functionality.",
-    );
-    return null;
+    console.error('OpenRouter API key missing! Check .env file and deployment settings');
+    throw new Error('API_KEY_MISSING');
   }
 
   const referer =
@@ -44,7 +42,7 @@ export const fetchAiResponse = async (
 
     const openrouter = getOpenrouter();
     if (!openrouter) {
-      return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🔧✨";
+      return "API Connection Error: Unable to establish connection. Please check network connection and try again.";
     }
 
     console.log(`Making AI request for agent: ${selectedAgent || "general"}`);
@@ -92,6 +90,27 @@ export const fetchAiResponse = async (
     }
 
     return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🔧✨";
+  }
+};
+
+export const checkApiHealth = async (): Promise<{status: string, error?: string}> => {
+  try {
+    const testResponse = await fetch('https://openrouter.ai/api/v1/auth/key', {
+      headers: {
+        'Authorization': `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    return {
+      status: testResponse.ok ? 'active' : 'inactive',
+      error: testResponse.statusText
+    };
+  } catch (error) {
+    return {
+      status: 'error',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    };
   }
 };
 

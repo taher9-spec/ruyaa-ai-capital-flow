@@ -1,0 +1,9 @@
+jobs:
+  verify-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test API Endpoint
+        run: |
+          curl -X POST https://openrouter.ai/api/v1/chat/completions \
+            -H "Authorization: Bearer ${{ secrets.OPENROUTER_API_KEY }}" \
+            -d '{"model":"openrouter/auto","messages":[{"role":"user","content":"healthcheck"}]}'

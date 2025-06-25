@@ -1,7 +1,19 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "ignoreCommand": "node ignore-build.js",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-  "alias": ["ruyaacapital.com"]
+  "build": {
+    "env": {
+      "ENVIRONMENT": "$VERCEL_ENV"
+    },
+    "ignoreCommand": "node ignore-build.js"
+  },
+  "routes": [
+    {
+      "src": "/api/.*",
+      "dest": "/api/run-sql",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
+    }
+  ]
 }
