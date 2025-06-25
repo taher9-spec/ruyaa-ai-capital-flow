@@ -51,8 +51,7 @@ export const fetchAiResponse = async (
     );
 
     const completion = await openrouter.chat.completions.create({
-      model:
-        modelMap[selectedAgent] || modelMap.general || "openai/gpt-4o",
+      model: modelMap[selectedAgent] || modelMap.general || 'openrouter/auto', // Valid OpenRouter model,
       messages: [
         { role: "system", content: systemPrompt || fallbackPrompt },
         ...apiMessages,
