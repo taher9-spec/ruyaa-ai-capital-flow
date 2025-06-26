@@ -45,5 +45,12 @@ The agents default to the free `google/gemini-pro` model via OpenRouter
 `VITE_SUPABASE_URL` – Supabase project URL
 `VITE_SUPABASE_ANON_KEY` – Supabase anon key
 
+### Vercel Deployment Checklist
+
+If the chat UI shows a "service maintenance" message or fails to connect to OpenRouter,
+ensure that the **`VITE_OPENROUTER_API_KEY`** variable is set in the Vercel project
+under **Settings → Environment Variables**. After adding or updating the variable,
+trigger a redeploy so the key is embedded into the client bundle.
+
 ## Security
 See [SECURITY.md](SECURITY.md) for security policies.
