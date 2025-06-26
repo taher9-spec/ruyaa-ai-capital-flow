@@ -5,7 +5,9 @@ import { systemPrompts, modelMap } from "@/config/agentConfig";
 
 const getOpenrouter = () => {
   const apiKey =
-    import.meta.env.VITE_OPENROUTER_API_KEY || import.meta.env.OPENROUTER_API_KEY;
+    process.env.OPENROUTER_API_KEY ||
+    import.meta.env.VITE_OPENROUTER_API_KEY ||
+    import.meta.env.OPENROUTER_API_KEY;
   if (!apiKey) {
     console.error('OpenRouter API key missing! Check .env file and deployment settings');
     throw new Error('API_KEY_MISSING');
@@ -96,7 +98,7 @@ export const checkApiHealth = async (): Promise<{status: string, error?: string}
   try {
     const testResponse = await fetch('https://openrouter.ai/api/v1/auth/key', {
       headers: {
-        'Authorization': `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
+        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
         'Content-Type': 'application/json'
       }
     });
