@@ -1,7 +1,24 @@
 import OpenAI from "openai";
 import { Message } from "@/types/chat";
 import { AgentId } from "@/context/ChatContext";
-import { systemPrompts, modelMap } from "@/config/agentConfig";
+
+// 1. Set free models for each agent
+export const modelMap = {
+  forex: "openai/gpt-3.5-turbo",
+  crypto: "google/gemini-pro",
+  arbitrage: "openai/gpt-3.5-turbo",
+  support: "google/gemini-pro",
+  general: "openai/gpt-3.5-turbo",
+};
+
+// 2. Define instructions (system prompts) for each agent
+export const agentInstructions = {
+  forex: "You are a financial trading expert focused on forex (foreign exchange) markets. Provide accurate, up-to-date, and clear forex trading advice, analysis, and explanations.",
+  crypto: "You are a crypto trading specialist. Offer concise, reliable insights, strategies, and safety tips for trading cryptocurrencies.",
+  arbitrage: "You are an advanced financial arbitrage advisor. Identify cross-market arbitrage opportunities and explain complex concepts simply.",
+  support: "You are a helpful customer support assistant for Ruyaa Capital. Answer questions and resolve issues politely, quickly, and thoroughly.",
+  general: "You are a helpful and knowledgeable AI assistant.",
+};
 
 const getOpenrouter = () => {
   const apiKey =
@@ -33,14 +50,18 @@ export const fetchAiResponse = async (
   selectedAgent: AgentId,
 ): Promise<string> => {
   try {
-    // Use general system prompt if no specific agent is selected
-    const systemPrompt = selectedAgent
-      ? systemPrompts[selectedAgent]
-      : systemPrompts.general;
-    const fallbackPrompt = `You are RuyaaCapital AI Support, a helpful general assistant.`;
+    // Get model and system prompt for this agent
+    const model = modelMap[selectedAgent] || modelMap.general;
+    const instructions = agentInstructions[selectedAgent] || agentInstructions.general;
 
-    // OpenAI API expects messages without the 'id' field
-    const apiMessages = newMessages.map(({ id, ...rest }) => rest);
+    // 3. Build message payload with system instructions
+    const messages = [
+      {
+        role: "system",
+        content: instructions,
+      },
+      ...newMessages,
+    ];
 
     const openrouter = getOpenrouter();
     if (!openrouter) {
@@ -49,15 +70,12 @@ export const fetchAiResponse = async (
 
     console.log(`Making AI request for agent: ${selectedAgent || "general"}`);
     console.log(
-      `Using model: ${modelMap[selectedAgent] || modelMap.general || "openai/gpt-4o"}`,
+      `Using model: ${model}`,
     );
 
     const completion = await openrouter.chat.completions.create({
-      model: modelMap[selectedAgent] || modelMap.general || 'openrouter/auto', // Valid OpenRouter model,
-      messages: [
-        { role: "system", content: systemPrompt || fallbackPrompt },
-        ...apiMessages,
-      ],
+      model,
+      messages,
       temperature: 0.7,
       max_tokens: 1000,
     });
@@ -66,7 +84,7 @@ export const fetchAiResponse = async (
 
     if (!botResponse || !botResponse.content) {
       console.warn("Received empty response from AI");
-      return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🔧✨";
+      return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🛠️";
     }
 
     if (botResponse.function_call) {
@@ -81,16 +99,16 @@ export const fetchAiResponse = async (
 
     if (error instanceof OpenAI.APIError) {
       if (error.status === 401) {
-        return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🔧✨";
+        return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🛠️";
       } else if (error.status === 429) {
         return "I'm experiencing high demand right now. Please try again in a moment.";
       } else if (error.status === 500) {
-        return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🔧✨";
+        return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🛠️";
       }
-      return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🔧✨";
+      return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🛠️";
     }
 
-    return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🔧✨";
+    return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🛠️";
   }
 };
 
@@ -113,12 +131,12 @@ export const checkApiHealth = async (): Promise<{status: string, error?: string}
       error: error instanceof Error ? error.message : 'Unknown error'
     };
   }
-};
+}
 
 export const getFallbackResponse = async (message: string): Promise<string> => {
   console.log("Using fallback response for message:", message);
   await new Promise((resolve) => setTimeout(resolve, 1500));
 
   // Return maintenance message instead of API key configuration message
-  return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🔧✨";
+  return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🛠️";
 };
