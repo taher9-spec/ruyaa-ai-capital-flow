@@ -23,7 +23,7 @@ const TradingCTA: React.FC = () => {
             'Open your MT4/MT5 account with Ruyaa AI and get access to professional trading signals.'
           }
         </p>
-        <Link to="/agents/mt4mt5">
+          <Link to="/agents?active=mt4mt5">
           <Button className="w-full bg-gold hover:bg-gold/90 text-dark-charcoal font-semibold">
             {isArabic ? 'افتح حساب تداول' : 'Open Trading Account'}
             <ArrowRight className={`w-4 h-4 ${isArabic ? 'mr-2' : 'ml-2'}`} />
