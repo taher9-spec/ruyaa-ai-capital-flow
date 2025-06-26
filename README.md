@@ -34,12 +34,13 @@ This optimization is implemented using Vercel's `ignoreCommand` feature in `verc
 See `.env.example` for the full list of configuration options.
 
 **Important**: the chat UI runs entirely in the browser, so the OpenRouter key must
-be exposed via the `VITE_OPENROUTER_API_KEY` variable. The plain `OPENROUTER_API_KEY`
-name is only useful for server-side code. If the key is not provided under the `VITE_`
-prefix, the agents will respond with a maintenance message.
+be exposed via the `VITE_OPENROUTER_API_KEY` variable. Server code can access the
+same value through `process.env.OPENROUTER_API_KEY` at build time. If the key is
+not provided under the `VITE_` prefix, the agents will respond with a maintenance
+message.
 
 `VITE_OPENROUTER_API_KEY` – OpenRouter API key (client side, e.g. `sk-or-...`)
-`OPENROUTER_API_KEY` – Optional fallback key name
+`OPENROUTER_API_KEY` – Same key used for server code via `process.env.OPENROUTER_API_KEY`
 The agents default to the free `google/gemini-pro` model via OpenRouter
 `VITE_TWELVEDATA_API_KEY` – TwelveData API key
 `VITE_SUPABASE_URL` – Supabase project URL
