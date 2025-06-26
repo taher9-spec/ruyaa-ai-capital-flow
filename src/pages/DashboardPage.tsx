@@ -74,7 +74,7 @@ const DashboardPage = () => {
       title: "Start Arbitrage",
       description: "Redirecting to arbitrage setup..."
     });
-    navigate("/agents/arbitrage");
+    navigate("/agents?active=arbitrage");
   };
 
   const handleWalletConnect = () => {

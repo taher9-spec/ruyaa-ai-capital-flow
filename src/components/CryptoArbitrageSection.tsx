@@ -62,7 +62,7 @@ const CryptoArbitrageSection = () => {
         whileTap={{ scale: 0.98 }}
       >
         <Link
-          to="/agents/arbitrage"
+          to="/agents?active=arbitrage"
           className="bg-green text-black px-8 py-4 rounded-xl text-lg font-bold shadow-green-glow hover:bg-green/90 transition-all duration-300 tracking-wide inline-flex items-center gap-2 font-spacegrotesk"
         >
           {t("try_now_arbitrage")}
