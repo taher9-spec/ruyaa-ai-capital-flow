@@ -2,13 +2,13 @@ import OpenAI from "openai";
 import { Message } from "@/types/chat";
 import { AgentId } from "@/context/ChatContext";
 
-// 1. Set free models for each agent
+// 1. Set best free models for each agent
 export const modelMap = {
-  forex: "openai/gpt-3.5-turbo",
-  crypto: "google/gemini-pro",
-  arbitrage: "openai/gpt-3.5-turbo",
-  support: "google/gemini-pro",
-  general: "openai/gpt-3.5-turbo",
+  forex: "deepseek/deepseek-chat-v3-0324:free",
+  crypto: "deepseek/deepseek-chat-v3-0324:free",
+  arbitrage: "deepseek/deepseek-chat-v3-0324:free",
+  support: "deepseek/deepseek-chat-v3-0324:free",
+  general: "deepseek/deepseek-chat-v3-0324:free",
 };
 
 // 2. Define instructions (system prompts) for each agent
