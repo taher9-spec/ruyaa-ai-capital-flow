@@ -2,8 +2,7 @@
   "build": {
     "env": {
       "ENVIRONMENT": "$VERCEL_ENV"
-    },
-    "ignoreCommand": "node ignore-build.js"
+    }
   },
   "routes": [
     {
