@@ -56,3 +56,10 @@ trigger a redeploy so the key is embedded into the client bundle.
 
 ## Security
 See [SECURITY.md](SECURITY.md) for security policies.
+
+### Network Access
+
+Ruyaa-AI communicates with `openrouter.ai` to generate AI responses. If your
+environment restricts outbound network requests, the chat features will display a
+maintenance message. Ensure that connections to `https://openrouter.ai` are
+allowed or whitelist the domain in your firewall settings.
