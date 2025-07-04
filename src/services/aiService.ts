@@ -81,6 +81,12 @@ export const fetchAiResponse = async (
   } catch (error) {
     console.error("Error in fetchAiResponse:", error);
 
+    // Handle network errors explicitly so users know when access to
+    // openrouter.ai is blocked. `fetch` throws a TypeError in that case.
+    if (error instanceof TypeError) {
+      return "Network request to OpenRouter failed. Ensure access to openrouter.ai is allowed.";
+    }
+
     if (error instanceof OpenAI.APIError) {
       if (error.status === 401) {
         return "I'm having service maintenance - please wait while I prepare myself and come back soon. 🛠️";
