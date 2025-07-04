@@ -39,9 +39,10 @@ same value through `process.env.OPENROUTER_API_KEY` at build time. If the key is
 not provided under the `VITE_` prefix, the agents will respond with a maintenance
 message.
 
-`VITE_OPENROUTER_API_KEY` – OpenRouter API key (client side, e.g. `sk-or-...`)
+`VITE_OPENROUTER_API_KEY` – OpenRouter API key (client side)
 `OPENROUTER_API_KEY` – Same key used for server code via `process.env.OPENROUTER_API_KEY`
-The agents default to the free `google/gemini-pro` model via OpenRouter
+The agents use free models on OpenRouter (currently `google/gemini-pro`).
+Make sure both variables are set in your `.env` file with your own key.
 `VITE_TWELVEDATA_API_KEY` – TwelveData API key
 `VITE_SUPABASE_URL` – Supabase project URL
 `VITE_SUPABASE_ANON_KEY` – Supabase anon key

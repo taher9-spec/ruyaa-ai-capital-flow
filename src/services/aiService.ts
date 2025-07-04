@@ -1,24 +1,8 @@
 import OpenAI from "openai";
 import { Message } from "@/types/chat";
 import { AgentId } from "@/context/ChatContext";
+import { modelMap, systemPrompts } from "@/config/agentConfig";
 
-// 1. Set best free models for each agent
-export const modelMap = {
-  forex: "deepseek/deepseek-chat-v3-0324:free",
-  crypto: "deepseek/deepseek-chat-v3-0324:free",
-  arbitrage: "deepseek/deepseek-chat-v3-0324:free",
-  support: "deepseek/deepseek-chat-v3-0324:free",
-  general: "deepseek/deepseek-chat-v3-0324:free",
-};
-
-// 2. Define instructions (system prompts) for each agent
-export const agentInstructions = {
-  forex: "You are a financial trading expert focused on forex (foreign exchange) markets. Provide accurate, up-to-date, and clear forex trading advice, analysis, and explanations.",
-  crypto: "You are a crypto trading specialist. Offer concise, reliable insights, strategies, and safety tips for trading cryptocurrencies.",
-  arbitrage: "You are an advanced financial arbitrage advisor. Identify cross-market arbitrage opportunities and explain complex concepts simply.",
-  support: "You are a helpful customer support assistant for Ruyaa Capital. Answer questions and resolve issues politely, quickly, and thoroughly.",
-  general: "You are a helpful and knowledgeable AI assistant.",
-};
 
 const getOpenrouter = () => {
   const apiKey =
@@ -52,7 +36,7 @@ export const fetchAiResponse = async (
   try {
     // Get model and system prompt for this agent
     const model = modelMap[selectedAgent] || modelMap.general;
-    const instructions = agentInstructions[selectedAgent] || agentInstructions.general;
+    const instructions = systemPrompts[selectedAgent] || systemPrompts.general;
 
     // 3. Build message payload with system instructions
     const messages = [
